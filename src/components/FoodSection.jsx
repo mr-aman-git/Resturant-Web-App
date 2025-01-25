@@ -13,7 +13,6 @@ const FoodSection = () => {
                 <h4>Biryani</h4>
                 <p>Biryani is a mixed rice dish popular in South Asia, made with rice, meat. </p>
                 <p><span>$80.00</span></p>
-                {/* <p><span></span></p> */}
                 </div>
             </div>
 
@@ -22,8 +21,7 @@ const FoodSection = () => {
                 <div className="food-content">
                 <h4>Biryani</h4>
                 <p>Biryani is a mixed rice dish popular in South Asia, made with rice, meat. </p>
-                <div className="price"><p>$80.00</p></div>
-                {/* <p><span></span></p> */}
+                <p><span>$80.00</span></p>
                 </div>
             </div>
 
@@ -32,8 +30,7 @@ const FoodSection = () => {
                 <div className="food-content">
                 <h4>Biryani</h4>
                 <p>Biryani is a mixed rice dish popular in South Asia, made with rice, meat. </p>
-                <div className="price"><p>$80.00</p></div>
-                {/* <p><span></span></p> */}
+                <p><span>$80.00</span></p>
                 </div>
             </div>
 

@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
+import FoodSection from './FoodSection';
+
+let BASE_URL= "http://localhost:9000/";
 const Header = () => {
+    let[storeData, setStoreData]= useState(null);
+    let[loading, setLoading]= useState(false);
+    let[error, setError]= useState(null);
+
+    useEffect(()=>{
+        let foodData= async ()=>{
+            setLoading(true);
+            try {
+                let respones= await fetch(BASE_URL);
+                let jsonData= await respones.json();
+                setStoreData(jsonData);
+                setLoading(false);
+
+            } catch (error) {
+                setError("Unableto fetch data");
+            }
+        }
+        foodData();
+
+    },[]);
+
+    if(loading) return <div>Loading...</div>
+    if (error) return <div>{error}</div>
+    console.log(storeData);
+    
   return (
     <>
     <header>
@@ -23,7 +51,7 @@ const Header = () => {
         </div>
     </header>
     
-
+<FoodSection />
     </>
   )
 }
