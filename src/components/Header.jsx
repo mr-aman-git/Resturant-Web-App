@@ -27,8 +27,8 @@ const Header = () => {
 
     if(loading) return <div>Loading...</div>
     if (error) return <div>{error}</div>
-    console.log(storeData);
     
+
   return (
     <>
     <header>
@@ -51,7 +51,7 @@ const Header = () => {
         </div>
     </header>
     
-<FoodSection />
+<FoodSection storeData={storeData}/>
     </>
   )
 }
