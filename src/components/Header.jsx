@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Header.css'
 import FoodSection from './FoodSection';
 
-let BASE_URL= "http://localhost:9000/";
+let BASE_URL= "http://localhost:9000";
 const Header = () => {
     let[storeData, setStoreData]= useState(null);
     let[loading, setLoading]= useState(false);
@@ -51,7 +51,7 @@ const Header = () => {
         </div>
     </header>
     
-<FoodSection storeData={storeData}/>
+<FoodSection storeData={storeData} BASE_URL={BASE_URL}/>
     </>
   )
 }
