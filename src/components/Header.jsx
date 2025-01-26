@@ -8,6 +8,7 @@ const Header = () => {
     let[loading, setLoading]= useState(false);
     let[error, setError]= useState(null);
     let[search, setSearch]= useState(null);
+    let[selectList, setSelectList]= useState('all');
 
     useEffect(()=>{
         let foodData= async ()=>{
@@ -26,8 +27,6 @@ const Header = () => {
         foodData();
 
     },[]);
-    if(loading) return <div>Loading...</div>
-    if (error) return <div>{error}</div>
     
     // SEARCH FILTER
     let searchFilter= (event)=>{
@@ -36,11 +35,26 @@ const Header = () => {
             setSearch(null);
         }
 
-        let searchFilter= storeData?.filter((food)=>food.name.toLowerCase().includes(searchData.toLowerCase())
+        let searchFoodFilters= storeData?.filter((food)=>food.name.toLowerCase().includes(searchData.toLowerCase())
     );
-    setSearch(searchFilter);
-        
+    setSearch(searchFoodFilters); 
     }
+
+    // SELECT LIST FILTER
+    function selectFilter(type) {
+        if (type == 'all') {
+            setSearch(storeData);
+            setSelectList('all');
+            return;
+        }
+        let selectFoodFilters = storeData?.filter((food) => food.type.toLowerCase().includes(type.toLowerCase())
+        );
+        setSearch(selectFoodFilters);
+        setSelectList(type);
+    }
+
+    if(loading) return <div>Loading...</div>
+    if (error) return <div>{error}</div>
 
   return (
     <>
@@ -55,10 +69,10 @@ const Header = () => {
 
             <div className="filter-section">
                 <ul>
-                    <li>All</li>
-                    <li>Breakfast</li>
-                    <li>Lunch</li>
-                    <li>Dinner</li>
+                    <li onClick={()=>selectFilter('all')}>All</li>
+                    <li onClick={()=>selectFilter('Breakfast')}>Breakfast</li>
+                    <li onClick={()=>selectFilter('Lunch')}>Lunch</li>
+                    <li onClick={()=>selectFilter('Dinner')}>Dinner</li>
                 </ul>
             </div>
         </div>
