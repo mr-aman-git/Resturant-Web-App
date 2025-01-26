@@ -2,7 +2,6 @@ import React from 'react'
 import './FoodSection.css'
 
 const FoodSection = ({storeData, BASE_URL}) => {
-    console.log(storeData);
     
 
   return (

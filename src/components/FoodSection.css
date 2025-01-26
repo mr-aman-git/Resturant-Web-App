@@ -30,6 +30,7 @@ main{
     margin-top: 30px;
     display: flex;
     background-color: rgba(104, 103, 103, 0.447);
+    border: 1px solid white;
     max-width: 340px;
     height: 160px;
     justify-content: space-between;

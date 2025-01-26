@@ -7,6 +7,7 @@ const Header = () => {
     let[storeData, setStoreData]= useState(null);
     let[loading, setLoading]= useState(false);
     let[error, setError]= useState(null);
+    let[search, setSearch]= useState(null);
 
     useEffect(()=>{
         let foodData= async ()=>{
@@ -15,6 +16,7 @@ const Header = () => {
                 let respones= await fetch(BASE_URL);
                 let jsonData= await respones.json();
                 setStoreData(jsonData);
+                setSearch(jsonData);
                 setLoading(false);
 
             } catch (error) {
@@ -24,10 +26,21 @@ const Header = () => {
         foodData();
 
     },[]);
-
     if(loading) return <div>Loading...</div>
     if (error) return <div>{error}</div>
     
+    // SEARCH FILTER
+    let searchFilter= (event)=>{
+        let searchData= event.target.value;
+        if(searchData == ''){
+            setSearch(null);
+        }
+
+        let searchFilter= storeData?.filter((food)=>food.name.toLowerCase().includes(searchData.toLowerCase())
+    );
+    setSearch(searchFilter);
+        
+    }
 
   return (
     <>
@@ -36,7 +49,7 @@ const Header = () => {
             <div className="container">
                 <div className="logo"><img src="/logo.svg" alt="" /></div>
                 <div className="search-food"> 
-                    <input type="text" placeholder='Search Food...' />
+                    <input type="text" placeholder='Search Food...' onChange={searchFilter} />
                 </div>
             </div>
 
@@ -51,7 +64,7 @@ const Header = () => {
         </div>
     </header>
     
-<FoodSection storeData={storeData} BASE_URL={BASE_URL}/>
+<FoodSection storeData={search} BASE_URL={BASE_URL}/>
     </>
   )
 }
